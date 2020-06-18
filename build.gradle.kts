@@ -4,7 +4,7 @@ plugins {
     id("com.gradle.plugin-publish") version "0.12.0"
 }
 
-group = "com.github.bjornvester"
+group = "com.github.kad-leeuwg1"
 version = "1.4"
 
 allprojects {
@@ -32,7 +32,7 @@ tasks.withType<Wrapper> {
 gradlePlugin {
     plugins {
         create("xjcPlugin") {
-            id = "com.github.bjornvester.xjc"
+            id = "com.github.kad-leeuwg1.xjc"
             implementationClass = "com.github.bjornvester.xjc.XjcPlugin"
             displayName = "Gradle XJC plugin"
             description = "A plugin that generates Java source code for XML schemas (xsd files) using the XJC tool. Supports the Gradle build cache and has been tested with Java 8 and 11. Please see the Github project page for details."
@@ -41,8 +41,8 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://github.com/bjornvester/xjc-gradle-plugin"
-    vcsUrl = "https://github.com/bjornvester/xjc-gradle-plugin"
+    website = "https://github.com/kad-leeuwg1/xjc-gradle-plugin"
+    vcsUrl = "https://github.com/kad-leeuwg1/xjc-gradle-plugin"
     tags = listOf("xjc", "jaxb", "xsd")
     (plugins) {
         "xjcPlugin" {
