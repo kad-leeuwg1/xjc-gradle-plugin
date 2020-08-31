@@ -4,8 +4,7 @@ plugins {
     id("com.gradle.plugin-publish") version "0.12.0"
 }
 
-group = "com.github.kad-leeuwg1"
-version = "1.4"
+version = "1.5"
 
 allprojects {
     repositories {
@@ -14,19 +13,20 @@ allprojects {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     compileOnly("org.glassfish.jaxb:jaxb-xjc:2.3.3")
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+tasks {
+    wrapper {
+        distributionType = Wrapper.DistributionType.ALL
+        gradleVersion = "6.6.1"
     }
-}
 
-tasks.withType<Wrapper> {
-    distributionType = Wrapper.DistributionType.ALL
-    gradleVersion = "6.5"
+    test {
+        useJUnitPlatform()
+    }
 }
 
 gradlePlugin {
@@ -47,9 +47,8 @@ pluginBundle {
     (plugins) {
         "xjcPlugin" {
             description = "Changes:\n" +
-                    "- Support for third-party plugins\n" +
-                    "- Renamed the 'xjcBind' configuration to 'xjcBindings'\n" +
-                    "- Support for marking the generated code with the @Generated annotation"
+                    "- Move configuration to XJC task instead of the extension" +
+                    "- Allow multiple XJC tasks to be configured"
         }
     }
 }
